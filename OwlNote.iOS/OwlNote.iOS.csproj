@@ -82,12 +82,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
-    <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
+    <Compile Include="Cells\NoteCell.cs" />
+    <Compile Include="Cells\NoteCell.designer.cs">
+      <DependentUpon>NoteCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="CellSource\NoteSource.cs" />
+    <Compile Include="Controllers\NoteViewController.cs" />
+    <Compile Include="Controllers\NoteViewController.designer.cs">
+      <DependentUpon>NoteViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="General\Main.cs" />
+    <Compile Include="General\AppDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="CellSource\" />
+    <Folder Include="Cells\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="General\" />
+  </ItemGroup>
 </Project>

@@ -32,6 +32,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Note.cs" />
+    <Compile Include="NoteDatabase.cs" />
+    <Compile Include="Models\IBusinessEntity.cs" />
+    <Compile Include="Managers\NoteManager.cs" />
+    <Compile Include="Repositories\NoteRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -47,5 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Managers\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 </Project>
