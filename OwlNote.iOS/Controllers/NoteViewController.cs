@@ -26,5 +26,11 @@ namespace OwlNote.iOS
 			// Register the TableView's data source
 			TableView.Source = new NoteSource ();
 		}
+
+		partial void didTapAddNote (NSObject sender)
+		{
+			Console.WriteLine("Tapped on Add Note, Lets create blank note and pass the ID to EditNoteVC");
+			PerformSegue("editNote",null);
+		}
 	}
 }

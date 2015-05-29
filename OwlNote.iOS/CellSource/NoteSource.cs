@@ -13,24 +13,14 @@ namespace OwlNote.iOS
 
 		public override nint NumberOfSections (UITableView tableView)
 		{
-			return 3;
+			return 1;
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return 2;
 		}
-
-		public override string TitleForHeader (UITableView tableView, nint section)
-		{
-			return "Header";
-		}
-
-		public override string TitleForFooter (UITableView tableView, nint section)
-		{
-			return "Footer";
-		}
-
+			
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell (NoteCell.Key) as NoteCell;
@@ -38,7 +28,10 @@ namespace OwlNote.iOS
 				cell = new NoteCell ();
 
 			// TODO: populate the cell with the appropriate data based on the indexPath
-			cell.TextLabel.Text = "Sample Text";
+			cell.Date.Text = "23\nApr\n2015";
+			cell.Title.Text = "Sample Title";
+			cell.Category.Text = "Sample category";
+			cell.Desc.Text = "Here goes the sample description of the note";
 
 			return cell;
 		}

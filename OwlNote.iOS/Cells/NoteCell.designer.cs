@@ -12,9 +12,39 @@ namespace OwlNote.iOS
 	[Register ("NoteCell")]
 	partial class NoteCell
 	{
+		[Outlet]
+		UIKit.UILabel lblCategory { get; set; }
+
+		[Outlet]
+		UIKit.UILabel lblDate { get; set; }
+
+		[Outlet]
+		UIKit.UILabel lblDescription { get; set; }
+
+		[Outlet]
+		UIKit.UILabel lblTitle { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (lblCategory != null) {
+				lblCategory.Dispose ();
+				lblCategory = null;
+			}
+
+			if (lblDate != null) {
+				lblDate.Dispose ();
+				lblDate = null;
+			}
+
+			if (lblDescription != null) {
+				lblDescription.Dispose ();
+				lblDescription = null;
+			}
+
+			if (lblTitle != null) {
+				lblTitle.Dispose ();
+				lblTitle = null;
+			}
 		}
 	}
 }

@@ -14,6 +14,9 @@ namespace OwlNote.iOS
 	{
 		[Outlet]
 		UIKit.UITableView TableView { get; set; }
+
+		[Action ("didTapAddNote:")]
+		partial void didTapAddNote (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

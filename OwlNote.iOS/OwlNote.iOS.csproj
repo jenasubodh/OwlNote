@@ -93,6 +93,10 @@
     </Compile>
     <Compile Include="General\Main.cs" />
     <Compile Include="General\AppDelegate.cs" />
+    <Compile Include="Controllers\EditNoteViewController.cs" />
+    <Compile Include="Controllers\EditNoteViewController.designer.cs">
+      <DependentUpon>EditNoteViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
