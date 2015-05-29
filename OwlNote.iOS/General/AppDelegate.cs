@@ -1,5 +1,11 @@
-﻿using Foundation;
+﻿using System;
+using System.IO;
+
+using Foundation;
 using UIKit;
+
+using SQLite;
+using OwlNote.Core.Managers;
 
 namespace OwlNote.iOS
 {
@@ -8,7 +14,9 @@ namespace OwlNote.iOS
 	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
-		// class-level declarations
+		public static AppDelegate SharedDelegate { get; private set; }
+		public NoteManager NoteMgr { get; set; }
+		SQLiteConnection conn;
 
 		public override UIWindow Window {
 			get;
@@ -24,6 +32,14 @@ namespace OwlNote.iOS
 			#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
 			#endif
+
+			SharedDelegate = this;
+			var sqliteFilename = "Note.db";
+			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); 
+			string libraryPath = Path.Combine (documentsPath, "..", "Library");
+			var path = Path.Combine(libraryPath, sqliteFilename);
+			conn = new SQLiteConnection(path);
+			NoteMgr = new NoteManager(conn);
 
 			return true;
 		}

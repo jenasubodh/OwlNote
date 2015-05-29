@@ -24,9 +24,6 @@ namespace OwlNote.iOS
 		[Action ("deleteNote:")]
 		partial void deleteNote (Foundation.NSObject sender);
 
-		[Action ("didTapDelete:")]
-		partial void didTapDelete (Foundation.NSObject sender);
-
 		[Action ("didTapSave:")]
 		partial void didTapSave (Foundation.NSObject sender);
 		
@@ -37,14 +34,14 @@ namespace OwlNote.iOS
 				categoryText = null;
 			}
 
-			if (titleText != null) {
-				titleText.Dispose ();
-				titleText = null;
-			}
-
 			if (noteText != null) {
 				noteText.Dispose ();
 				noteText = null;
+			}
+
+			if (titleText != null) {
+				titleText.Dispose ();
+				titleText = null;
 			}
 		}
 	}

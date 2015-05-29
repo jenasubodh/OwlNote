@@ -3,6 +3,8 @@ using System;
 using Foundation;
 using UIKit;
 
+using OwlNote.Core.Models;
+
 namespace OwlNote.iOS
 {
 	public partial class NoteViewController : UIViewController
@@ -24,7 +26,21 @@ namespace OwlNote.iOS
 			base.ViewDidLoad ();
 
 			// Register the TableView's data source
-			TableView.Source = new NoteSource ();
+			TableView.Source = new NoteSource (this);
+			TableView.Delegate = new NoteDelegate (this);
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			TableView.ReloadData ();
+		}
+
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			if (segue.Identifier == "editNote") {
+				var noteEditorVC = segue.DestinationViewController as EditNoteViewController;
+			}
 		}
 
 		partial void didTapAddNote (NSObject sender)
@@ -32,5 +48,6 @@ namespace OwlNote.iOS
 			Console.WriteLine("Tapped on Add Note, Lets create blank note and pass the ID to EditNoteVC");
 			PerformSegue("editNote",null);
 		}
+
 	}
 }
