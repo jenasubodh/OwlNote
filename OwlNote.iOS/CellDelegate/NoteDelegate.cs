@@ -20,6 +20,26 @@ namespace OwlNote.iOS
 			Console.WriteLine ("Row selected : " + indexPath.Row);
 		}
 
+		public override UITableViewRowAction[] EditActionsForRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			UITableViewRowAction moreAction = UITableViewRowAction.Create (
+				UITableViewRowActionStyle.Normal, 
+				"More",
+				delegate {
+					Console.WriteLine ("More !");
+					_noteViewController.ShowMoreAction();
+				});
+
+			UITableViewRowAction deleteAction = UITableViewRowAction.Create (
+				UITableViewRowActionStyle.Destructive, 
+				"Delete",
+				delegate {
+					Console.WriteLine ("Delete !");
+					_noteViewController.ReloadData();
+				});
+
+			return new []{ deleteAction, moreAction };
+		}
 	}
 }
 

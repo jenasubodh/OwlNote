@@ -13,6 +13,9 @@ namespace OwlNote.iOS
 	partial class NoteCell
 	{
 		[Outlet]
+		UIKit.UILabel hueColor { get; set; }
+
+		[Outlet]
 		UIKit.UILabel lblCategory { get; set; }
 
 		[Outlet]
@@ -22,10 +25,18 @@ namespace OwlNote.iOS
 		UIKit.UILabel lblDescription { get; set; }
 
 		[Outlet]
+		UIKit.UILabel lblTime { get; set; }
+
+		[Outlet]
 		UIKit.UILabel lblTitle { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (hueColor != null) {
+				hueColor.Dispose ();
+				hueColor = null;
+			}
+
 			if (lblCategory != null) {
 				lblCategory.Dispose ();
 				lblCategory = null;
@@ -39,6 +50,11 @@ namespace OwlNote.iOS
 			if (lblDescription != null) {
 				lblDescription.Dispose ();
 				lblDescription = null;
+			}
+
+			if (lblTime != null) {
+				lblTime.Dispose ();
+				lblTime = null;
 			}
 
 			if (lblTitle != null) {

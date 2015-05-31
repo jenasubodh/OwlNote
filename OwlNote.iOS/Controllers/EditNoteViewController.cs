@@ -30,12 +30,6 @@ namespace OwlNote.iOS
 			this.NavigationItem.Title = "Edit Note";
 		}
 
-		partial void deleteNote (NSObject sender)
-		{
-			Console.WriteLine("Tapped Delete");
-			NavigationController.PopViewController(true);
-		}
-
 		partial void didTapSave (NSObject sender)
 		{		
 			Console.WriteLine("Tapped Save");
@@ -71,19 +65,5 @@ namespace OwlNote.iOS
 
 			return true;
 		}
-
-		/*
-		public void UpdateUIWithNote()
-		{
-			if (currentNote == null) {
-				currentNote = AppDelegate.SharedDelegate.NoteMgr.GetNote (noteID);
-			}
-
-			// Once the note has been updated then update the UI with the respective note values
-			titleText.Text = currentNote.Title;
-			categoryText.Text = currentNote.Category;
-			noteText.Text = currentNote.Description;
-		}
-      */
 	}
 }

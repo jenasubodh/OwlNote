@@ -21,9 +21,6 @@ namespace OwlNote.iOS
 		[Outlet]
 		UIKit.UITextField titleText { get; set; }
 
-		[Action ("deleteNote:")]
-		partial void deleteNote (Foundation.NSObject sender);
-
 		[Action ("didTapSave:")]
 		partial void didTapSave (Foundation.NSObject sender);
 		

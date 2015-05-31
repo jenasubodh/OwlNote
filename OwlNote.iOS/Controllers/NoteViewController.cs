@@ -25,6 +25,8 @@ namespace OwlNote.iOS
 		{
 			base.ViewDidLoad ();
 
+			NavigationItem.LeftBarButtonItem = EditButtonItem;
+
 			// Register the TableView's data source
 			TableView.Source = new NoteSource (this);
 			TableView.Delegate = new NoteDelegate (this);
@@ -33,7 +35,7 @@ namespace OwlNote.iOS
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			TableView.ReloadData ();
+			ReloadData ();
 		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
@@ -45,9 +47,53 @@ namespace OwlNote.iOS
 
 		partial void didTapAddNote (NSObject sender)
 		{
-			Console.WriteLine("Tapped on Add Note, Lets create blank note and pass the ID to EditNoteVC");
-			PerformSegue("editNote",null);
+			Console.WriteLine ("Tapped on Add Note, Lets create blank note and pass the ID to EditNoteVC");
+			PerformSegue ("editNote", null);
 		}
 
+
+		// Public Methods, Accessible by other Views
+
+		public void ReloadData ()
+		{
+			TableView.ReloadData ();
+		}
+
+		public void ShowMoreAction ()
+		{
+			UIAlertController actionSheetAlert = UIAlertController.Create ("Action Sheet", "Select an item from below", UIAlertControllerStyle.ActionSheet);
+
+			// Add Actions
+			actionSheetAlert.AddAction (UIAlertAction.Create ("Item One", 
+				UIAlertActionStyle.Default, 
+				(action) => 
+				Console.WriteLine ("Item One pressed.")
+			));
+
+			actionSheetAlert.AddAction (UIAlertAction.Create ("Item Two", 
+				UIAlertActionStyle.Default, 
+				(action) => 
+				Console.WriteLine ("Item Two pressed.")
+			));
+
+			actionSheetAlert.AddAction (UIAlertAction.Create ("Item Three", 
+				UIAlertActionStyle.Default, 
+				(action) => 
+				Console.WriteLine ("Item Three pressed.")
+			));
+
+			actionSheetAlert.AddAction (UIAlertAction.Create ("Cancel", 
+				UIAlertActionStyle.Cancel, 
+				(action) => 
+				Console.WriteLine ("Cancel button pressed.")
+			));
+
+			UIPopoverPresentationController presentationPopover = actionSheetAlert.PopoverPresentationController;
+			if (presentationPopover != null) {
+				presentationPopover.SourceView = this.View;
+			}
+
+			this.PresentViewController (actionSheetAlert, true, null);
+		}
 	}
 }

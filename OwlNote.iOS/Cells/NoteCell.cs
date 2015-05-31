@@ -31,6 +31,19 @@ namespace OwlNote.iOS
 			set { lblDescription = value; }
 		}
 
+		public UILabel Time
+		{
+			get { return lblTime; }
+			set { lblTime = value; }
+		}
+
+		public UILabel DateHue
+		{
+			get { return hueColor; }
+			set { hueColor = value; }
+		}
+
+
 
 		public static readonly NSString Key = new NSString ("NoteCell");
 

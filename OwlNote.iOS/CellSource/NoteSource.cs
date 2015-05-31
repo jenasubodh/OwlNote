@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 using Foundation;
 using UIKit;
@@ -13,6 +14,18 @@ namespace OwlNote.iOS
 		private IList<Note> _Notes;
 		private NoteViewController _NoteVC;
 
+		// Create random UIColors
+		public UIColor GenerateRandomColor()
+		{
+			Random random = new Random ();
+
+			int red = random.Next (256);
+			int green = random.Next (256);
+			int blue = random.Next (256);
+			// mix the color
+			return UIColor.FromRGB(red/2,green/2,blue/2);
+		}
+			
 		public IList<Note> Notes {
 			get {
 				LoadNotes ();
@@ -53,12 +66,24 @@ namespace OwlNote.iOS
 
 			var note = this.Notes [indexPath.Row];
 
-			cell.Date.Text = note.Date.Day + "\n" + note.Date.Month + "\n" + note.Date.Year;
+			cell.DateHue.BackgroundColor = GenerateRandomColor ();
+
+			cell.Date.Text = note.Date.Day + "\n" + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName (note.Date.Month) + "\n" + note.Date.Year;
 			cell.Title.Text = note.Title;
 			cell.Category.Text = note.Category;
 			cell.Desc.Text = note.Description;
+			cell.Time.Text = String.Format("{0:t}", note.Date);
 
 			return cell;
+		}
+			
+		public override bool CanEditRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			return true;
+		}
+
+		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
+		{
 		}
 	}
 }
